@@ -42,7 +42,7 @@ export class AlertComponent implements OnInit {
         this.someService.getData().subscribe(
             value => {
                 console.log('Value: ', value);
-                this.serviceContent = value;
+                this.serviceContent = JSON.stringify(value);
             },
             error => {
                 console.log('Error Occured..', error);
