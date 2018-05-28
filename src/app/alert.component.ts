@@ -1,5 +1,5 @@
+import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { SomeService } from './some-service.service';
-import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
     selector: 'app-alert',
@@ -25,14 +25,18 @@ import { Component, OnInit, Input } from '@angular/core';
             text-align: left;
         }
         `
-    ]
+    ],
+    encapsulation: ViewEncapsulation.Native
+    // CSS gets compiled down to Javascript with Native
 })
 export class AlertComponent implements OnInit {
     @Input() message: string;
     serviceContent: string;
     constructor(private someService: SomeService) { }
 
-    ngOnInit(): void { }
+    ngOnInit(): void {
+        console.log('Alert-Component loaded...');
+     }
 
     callService(): void {
         this.someService.getData().subscribe(

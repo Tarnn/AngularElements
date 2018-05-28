@@ -1,22 +1,29 @@
 import { AlertComponent } from './alert.component';
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
-
-import { AppComponent } from './app.component';
+import { NgModule, Injector } from '@angular/core';
 import { SomeService } from './some-service.service';
+import { createCustomElement } from '@angular/elements';
 
 @NgModule({
   declarations: [
-    AppComponent,
     AlertComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule
   ],
-  providers: [],
-  bootstrap: [AppComponent],
   entryComponents: [AlertComponent]
 })
-export class AppModule { }
+export class AppModule {
+
+  constructor(private injector: Injector, private domSanitizer: DomSanitizer) {
+    const AlertElement = createCustomElement(AlertComponent, { injector: injector });
+    customElements.define('my-alert', AlertElement);
+  }
+
+  ngDoBootstrap() {
+
+  }
+
+}

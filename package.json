@@ -7,7 +7,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "build:elements": "ng build --prod --output-hashing none && node build-script.js"
   },
   "private": true,
   "dependencies": {
@@ -22,7 +23,9 @@
     "@angular/platform-browser-dynamic": "^6.0.2",
     "@angular/router": "^6.0.2",
     "@webcomponents/custom-elements": "^1.1.1",
+    "concat": "^1.0.3",
     "core-js": "^2.5.4",
+    "fs-extra": "^6.0.1",
     "rxjs": "^6.0.0",
     "rxjs-compat": "^6.2.0",
     "zone.js": "^0.8.26"
